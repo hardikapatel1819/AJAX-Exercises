@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>apple app</title>
+</head>
+<body>
+    <h1>Ajax and JSON</h1>
+    <p id="demo"></p>
+    <button type="button" id="btn">get price</button>
+    <script>
+        function myajax() {
+
+        var price = document.getElementById("demo")
+            var btn = document.getElementById("btn");
+
+        btn.addEventListener("click",function () {
+            var ourdata = new XMLHttpRequest();
+            ourdata.open('GET',"https://itunes.apple.com/us/rss/toppaidapplications/limit=100/json");
+            ourdata.onload = function () {
+                var ourData = JSON.parse(ourdata.responseText);
+
+            }
+
+        })
+
+        }
+    </script>
+</body>
+</html>

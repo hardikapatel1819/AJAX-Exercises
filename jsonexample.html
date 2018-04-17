@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>json example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <form id="form">
+        <div class="container" style="margin-top: 20px">
+
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" class="form-control" id="fname" />
+            </div>
+
+            <div class="form-group">
+                <label for="mname">Middel Name:</label>
+                <input type="text" class="form-control" id="mname" />
+            </div>
+
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" class="form-control" id="lname" />
+            </div>
+            <div style="margin-bottom: 10px" id="yesno">
+                Is Married:<input type="radio" name="gender" id="yes" style="margin-left: 10px" value="yes" />Yes
+                <input type="radio" name="gender" id="no" value="no" checked />No
+            </div>
+            <div>
+                <label>Address:</label>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="city">City</label>
+                <input type="text" class="form-control" maxlength="10" id="city"  />
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label for="state">State</label>
+                <input type="text" class="form-control" maxlength="10" id="state"  />
+            </div>
+
+
+            <div class="form-group">
+                <label for="pnumber">Phone Number</label>
+                <input type="number" class="form-control" maxlength="10" id="pnumber"  />
+            </div>
+
+            <div  style="margin-bottom: 10px">
+            <div class="form-check form-check-inline">
+                Language :<input type="checkbox" name="language" class="form-check-input" value="" style="margin-left: 10px">HTML
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" name="language" class="form-check-input" value="">CSS
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" name="language" class="form-check-input" value="">Bootstrap
+            </div><br>
+            </div>
+
+            <button type="button" id="btn" class="btn btn-primary" onclick="savedata()">Save Data</button>
+            <button type="button" id="clr" class="btn btn-primary" onclick="clear1()">Clear</button>
+        </div>
+    </form>
+
+    <div class="container"  style="margin-top: 20px; border: 1px solid black; display: none;" id="personal">
+        <label>First Name :</label>
+        <span id="fname1"></span><br>
+
+        <label>Middle Name :</label>
+        <span id="mname1"></span><br>
+
+        <label>Last Name :</label>
+        <span id="lname1"></span><br>
+
+        <label> Is Married :</label>
+        <span id="isMarried1"></span><br>
+
+        <label>City :</label>
+        <span id="city1"></span><br>
+
+        <label>State :</label>
+        <span id="state1"></span><br>
+
+        <label>Phone Number :</label>
+        <span id="phonenum"></span><br>
+
+        <label>Language :</label>
+        <span id="lan"></span>
+
+    </div>
+
+<script>
+    function savedata() {
+
+        var personalDetail = {
+            "fname": document.getElementById("fname").value,
+            "mname": document.getElementById("mname").value,
+            "lname": document.getElementById("lname").value,
+            "ismarried": false,
+            "phonenumber":document.getElementById("pnumber").value,
+            "language":["HTML","CSS","Bootstrap"],
+            "address":{"city":document.getElementById("city").value,
+                        "state":document.getElementById("state").value}
+        };
+
+        if(document.getElementById("yes").checked) {
+            personalDetail.ismarried = true;
+        } else {
+            personalDetail.ismarried = false;
+        }
+
+        console.log(JSON.stringify(personalDetail));
+
+
+
+
+
+
+
+
+        //console.log(Math.min.apply(Math, [100,13,3,6]));
+
+
+        document.getElementById("fname1").innerHTML = personalDetail.fname;
+        document.getElementById("mname1").innerHTML = personalDetail.mname;
+        document.getElementById("lname1").innerHTML = personalDetail.lname;
+        //radio
+        if(personalDetail.ismarried) {
+            document.getElementById("isMarried1").innerHTML = 'Yes';
+        } else {
+            document.getElementById("isMarried1").innerHTML = 'No';
+        }
+        //address
+        document.getElementById("city1").innerHTML = personalDetail.address.city;
+        document.getElementById("state1").innerHTML = personalDetail.address.state;
+        //phone number
+        document.getElementById("phonenum").innerHTML = personalDetail.phonenumber;
+
+        //checkbox
+        var lang =document.getElementsByName("language");
+        if(lang[0].checked){
+            document.getElementById("lan").innerHTML = personalDetail.language[0];
+        }
+         else if(lang[1].checked){
+            document.getElementById("lan").innerHTML = personalDetail.language[1];
+        }
+
+
+        // console.log(document.getElementById("lan").innerHTML = personalDetail.language[0]);
+        document.getElementById("personal").style.display = "block";
+    }
+
+    function clear1() {
+        console.log("hello");
+        document.getElementById("fname").value ="";
+        document.getElementById("mname").value ="";
+        document.getElementById("lname").value ="";
+        document.getElementById("pnumber").value ="";
+        document.getElementById("city").value ="";
+        document.getElementById("state").value ="";
+        document.getElementById("personal").style.display = "none";
+    }
+
+</script>
+</body>
+</html>

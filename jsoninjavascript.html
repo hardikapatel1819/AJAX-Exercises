@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>json in javascript</title>
+
+    <script>
+        function myfunction() {
+            var personal = '{"fn":"dhval", "mn":"s", "ln":"patel", "address":{ "state":"boston", "country":"USA", "cars":["BMW","alto","audi"]}}';
+
+            var personalObj = JSON.parse(personal);
+
+            document.getElementById("demo").innerHTML = personalObj.fn;
+
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p id="demo"></p>
+    </div>
+    <button type="button" id="btn" value="submit" onclick="myfunction()">submit</button>
+</body>
+</html>
